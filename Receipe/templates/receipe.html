@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+{% block start %}
+<div class="container mt-5">
+        <form class="col-6 mx-auto  card p-3 shadow-lg" method="Post" enctype="multipart/form-data">
+        {% csrf_token %}
+            <h2 style="text-align: center; padding-top: 15px;">Add Receipe</h2>
+           <hr>
+              <div class="mb-3">
+                <label  class="form-label">Receipe Name</label>
+                <input type="text" name="receipe_name"  class="form-control">
+              </div>
+              <div class="mb-3">
+                <label  class="form-label">Receipe Description</label>
+                <textarea name="receipe_description" class="form-control"></textarea>
+          
+              </div>
+              <div class="mb-3">
+                <label  class="form-label">Receipe Image</label>
+                <input name="receipe_image"  type="file"  class="form-control">
+          
+              </div> 
+              <button type="submit" class="btn btn-success">Submit</button>
+           
+          </form>
+    </div>
+    <hr>
+    <div class="container">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Sr.No</th>
+            <th>Receipe Name</th>
+            <th>Receipe Description</th>
+            <th>Receipe Image</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for receipe in receipe%}
+          <tr>
+            <td>{{forloop.counter}}</td>
+            <td>{{receipe.receipe_name}}</td>
+            <td>{{receipe.receipe_description}}</td>
+            <td><img src="/media/{{receipe.receipe_image}}" style="height: 50px;"></td>
+            <td>
+              <a href="/update_receipe/{{receipe.id}}" class="btn btn-success m-1" >Update</a>
+              <a href="/delete_receipe/{{receipe.id}}" class="btn btn-danger" >Delete</a>
+             </td>
+          </tr>   
+          {% endfor%}  
+        </tbody>
+      </table>
+    </div>
+
+{% endblock %}
