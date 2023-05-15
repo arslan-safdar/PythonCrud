@@ -1,6 +1,5 @@
 from django.shortcuts import render
 from django.shortcuts import redirect
-from django.http import HttpResponse
 from .models import *
 
 def Receipe(request):
@@ -20,6 +19,9 @@ def Receipe(request):
       
      
     queryset = Receipes.objects.all()
+    if request.GET.get('search'):
+        queryset = queryset.filter(receipe_name__icontains = request.GET.get('search'))
+
     context = {'receipe':queryset}
 
     return render(request , 'receipe.html',context)
@@ -33,12 +35,15 @@ def update_receipe(request , id):
        
         receipe_name = data.get('receipe_name')
         receipe_description = data.get('receipe_description')
-        receipe_image = request.FILES['receipe_image']
+        receipe_image = request.FILES.get('receipe_image')
        
         queryset.receipe_name = receipe_name
         queryset.receipe_description = receipe_description
+        
         if receipe_image:
             queryset.receipe_image = receipe_image
+          
+           
         queryset.save()
         return redirect('/receipe/')
 
@@ -47,9 +52,9 @@ def update_receipe(request , id):
     return render(request , 'update_receipe.html',context)
 
 def delete_receipe(request,id):
-    queryset = Receipes.objects.get(id=id)
+    queryset = Receipes.objects.get(id = id)
     queryset.delete()
-    
+
     return redirect('/receipe/')
 
 

@@ -1,5 +1,8 @@
 {% extends "base.html" %}
 {% block start %}
+
+
+
 <div class="container mt-5">
         <form class="col-6 mx-auto  card p-3 shadow-lg" method="Post" enctype="multipart/form-data">
         {% csrf_token %}
@@ -23,7 +26,16 @@
            
           </form>
     </div>
-    <hr>
+<hr>
+    <div class="container">
+      <form >
+        <div class="mb-3 mr-3 col-4 mx-auto " style="display:flex;">
+          <input name="search" placeholder="Search"  class="form-control">
+          <button type="Submit" class="btn btn-info">Search</button>
+        </div>
+      </form>
+</div>
+<hr>
     <div class="container">
       <table class="table">
         <thead>
