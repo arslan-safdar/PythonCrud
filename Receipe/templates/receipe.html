@@ -4,6 +4,7 @@
 
 
 <div class="container mt-5">
+
         <form class="col-6 mx-auto  card p-3 shadow-lg" method="Post" enctype="multipart/form-data">
         {% csrf_token %}
             <h2 style="text-align: center; padding-top: 15px;">Add Receipe</h2>
@@ -32,6 +33,7 @@
         <div class="mb-3 mr-3 col-4 mx-auto " style="display:flex;">
           <input name="search" placeholder="Search"  class="form-control">
           <button type="Submit" class="btn btn-info">Search</button>
+          <a href="/logout" class="btn btn-danger">logout</a>
         </div>
       </form>
 </div>
