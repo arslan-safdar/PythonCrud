@@ -31,11 +31,10 @@ def update_receipe(request , id):
     queryset = Receipes.objects.get(id = id)
 
     if request.method == "POST":
-       
-        data = request.POST
+  
            
-        receipe_name = data.get('receipe_name')
-        receipe_description = data.get('receipe_description')
+        receipe_name = request.POST.get('receipe_name')
+        receipe_description = request.POST.get('receipe_description')
         receipe_image = request.FILES.get('receipe_image')
        
         queryset.receipe_name = receipe_name

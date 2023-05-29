@@ -41,6 +41,7 @@ INSTALLED_APPS = [
 External_Apps = [
     'Home',
     'Receipe'
+    
 ]
 INSTALLED_APPS += External_Apps
 
